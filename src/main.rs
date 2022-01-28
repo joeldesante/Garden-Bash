@@ -15,7 +15,6 @@
  * 
  * TODO:
  * - Add stealing
- * - Make the game end and display a winner
  */
 
 use colored::Colorize;
