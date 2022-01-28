@@ -115,6 +115,7 @@ impl Board {
                 {
                     self.carrots.remove(index);
                     player.score += 1;
+                    Carrot::spawn_carrot(self);
                     return;
                 }
             }
