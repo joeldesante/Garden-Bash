@@ -9,7 +9,7 @@
  * STEAL -> Steals five carrots from any player within 3 units of the player
  * 
  * - Instructions -
- * Each player has 100 turns to harvest the most carrots possible.
+ * Each player has a set number of turns to harvest the most carrots possible.
  * Move a top a carrot to pick it.
  * Move near a player and use the "steal" command to take at most five carrots from them.
  * 
@@ -19,7 +19,8 @@
 
 use colored::Colorize;
 
-const GAME_TURNS: u8 = 2;
+const GAME_TURNS: u8 = 50;
+const STEAL_AMOUNT: u8 = 3;
 
 enum Direction {
     UP, DOWN, LEFT, RIGHT
@@ -200,6 +201,7 @@ impl Board {
                     is_command_valid = true;
                 },
                 "steal" => {
+                    println!("Stealing has not yet been implemented. Sorry!");
                     is_command_valid = true;
                 },
                 _ => println!("{}", "Invalid Command! Try Again.\n".red().bold())
