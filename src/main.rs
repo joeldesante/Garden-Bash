@@ -13,7 +13,6 @@
  * Move a top a carrot to pick it.
  * Move near a player and use the "steal" command to take at most five carrots from them.
  * 
- * 
  * TODO:
  * - Add stealing
  * - Make the game end and display a winner
@@ -244,6 +243,8 @@ fn main() {
     }
 
     clearscreen::clear().unwrap();
-    println!("{}", "GAME OVER YOU HUNK OF SHIT".bold());
-    // End of game
+    println!("  {}", "•••───────── GAME OVER ─────────•••".bold());
+    for player in board.players.iter() {
+        println!("   Player {} -> {} Carrots", player.name, player.score);
+    }
 }
