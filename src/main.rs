@@ -15,13 +15,13 @@
  * 
  * 
  * TODO:
- * - Implement Carrot Collection
- *      - Implement Points Counting
- * - Make it so new carrots spawn on collection
+ * - Add stealing
  * - Make the game end and display a winner
  */
 
 use colored::Colorize;
+
+const GAME_TURNS: u8 = 2;
 
 enum Direction {
     UP, DOWN, LEFT, RIGHT
@@ -88,7 +88,7 @@ impl Board {
         let current_turn = self.get_current_turn();
         let player = self.get_current_player();
         println!("  ┌───────────────────────────────•••");
-        println!("  │ Turns Left {}; Player {}; Scr: {}", 100 - current_turn, player.name, player.score);
+        println!("  │ Turns Left {}; Player {}; Scr: {}", GAME_TURNS - current_turn, player.name, player.score);
         println!("  └───────────────────────────────•••");
         
         // Board
@@ -235,7 +235,7 @@ fn main() {
         Carrot::spawn_carrot(&mut board);
     }
 
-    while board.get_current_turn() < 100 {
+    while board.get_current_turn() < GAME_TURNS {
         //clearscreen::clear().unwrap();
         board.draw();
         board.await_command();
