@@ -104,6 +104,24 @@ impl Board {
         println!("  └─────────────────────────────────┘");
     }
 
+    /**
+     * Checks the game state to see if a player needs
+     * to be awarded a point for grabbing a carrot.
+     */
+    fn check_for_pickups(&mut self) {
+        for (index, carrot) in self.carrots.iter_mut().enumerate() {
+            for player in self.players.iter_mut() {
+                if player.position[0] == carrot.position[0] && 
+                   player.position[1] == carrot.position[1] 
+                {
+                    self.carrots.remove(index);
+                    player.score += 1;
+                    return;
+                }
+            }
+        }
+    }
+
     fn get_current_player(&mut self) -> &mut Player {
         let index = self.steps % (self.players.len() as u8);
         return self.players.get_mut(index as usize).unwrap();
@@ -221,6 +239,7 @@ fn main() {
         //clearscreen::clear().unwrap();
         board.draw();
         board.await_command();
+        board.check_for_pickups();
         board.steps += 1;
     }
 
